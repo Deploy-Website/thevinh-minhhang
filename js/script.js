@@ -414,6 +414,22 @@
     });
   });
 
+    // ALBUM GALLERIES
+    $(document).on('click', '.btn-see-more-gallery2', function(e){
+        e.preventDefault();
+        let indexNumber = $(this).data('index') || 0;
+        $(this).lightGallery({
+        thumbnail: true,
+        dynamic: true,
+        dynamicEl: photoGalleries2,
+        download: false,
+        autoplay: true,
+        preload: 2,
+        appendSubHtmlTo: '.lg-item',
+        index: parseInt(indexNumber)
+      });
+    });
+
   $(document).on('click', '.qr-code-image', function(){
       let srcImage = $(this).attr('src');
       $(this).lightGallery({
