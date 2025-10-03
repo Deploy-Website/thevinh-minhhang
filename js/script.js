@@ -92,48 +92,51 @@
   // coming count down clock
 	if ($("#clock").length) {
         function timeElapse(date){
-            var current = Date();
-            var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
-            var days = Math.floor(seconds / (3600 * 24));
-            if (days < 10) {
-                days = "0" + days;
-            }
-            seconds = seconds % (3600 * 24);
-            var hours = Math.floor(seconds / 3600);
-            if (hours < 10) {
-                hours = "0" + hours;
-            }
-            seconds = seconds % 3600;
-            var minutes = Math.floor(seconds / 60);
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-            seconds = seconds % 60;
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
+            // var current = Date();
+            // var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+            // var days = Math.floor(seconds / (3600 * 24));
+            // if (days < 10) {
+            //     days = "0" + days;
+            // }
+            // seconds = seconds % (3600 * 24);
+            // var hours = Math.floor(seconds / 3600);
+            // if (hours < 10) {
+            //     hours = "0" + hours;
+            // }
+            // seconds = seconds % 3600;
+            // var minutes = Math.floor(seconds / 60);
+            // if (minutes < 10) {
+            //     minutes = "0" + minutes;
+            // }
+            // seconds = seconds % 60;
+            // if (seconds < 10) {
+            //     seconds = "0" + seconds;
+            // }
+            var days = 0;
+            var hours = 0;
+            var minutes = 0;
             var html = '<div class="event-count-box"><div class="dash days_dash"><div class="digit">' + days + '</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-day') +'</span> </div><div class="event-count-box"><div class="dash hours_dash"><div class="digit">' + hours + '</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-hour') +'</span> </div><div class="event-count-box"><div class="dash minutes_dash"><div class="digit">' + minutes + '</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-minute') +'</span> </div><div class="event-count-box"><div class="dash seconds_dash"><div class="digit">' + seconds + '</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-second') +'</span> </div>';
             $('#clock').html(html);
         }
 
-        $('#clock').countdown($('#clock').data('date'), function(event) {
-            if(event.type == 'stoped'){
-                var together = new Date($('#clock').data('date'));           
-                together.setHours(0);                           
-                together.setMinutes(0);             
-                together.setSeconds(0);                 
-                together.setMilliseconds(0);
-                setInterval(function() {
-                    timeElapse(together);
-                }, 1000);
-            }else{
-                var $this = $(this).html(event.strftime(''
-                + ' <div class="event-count-box"><div class="dash days_dash"><div class="digit">%D</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-day') +'</span> </div>'
-                + ' <div class="event-count-box"><div class="dash hours_dash"><div class="digit">%H</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-hour') +'</span> </div>'
-                + ' <div class="event-count-box"><div class="dash minutes_dash"><div class="digit">%M</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-minute') +'</span> </div>'
-                + ' <div class="event-count-box"><div class="dash seconds_dash"><div class="digit">%S</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-second') +'</span> </div>'));
-            }
-        });
+        // $('#clock').countdown($('#clock').data('date'), function(event) {
+        //     if(event.type == 'stoped'){
+        //         var together = new Date($('#clock').data('date'));           
+        //         together.setHours(0);                           
+        //         together.setMinutes(0);             
+        //         together.setSeconds(0);                 
+        //         together.setMilliseconds(0);
+        //         setInterval(function() {
+        //             timeElapse(together);
+        //         }, 1000);
+        //     }else{
+        //         var $this = $(this).html(event.strftime(''
+        //         + ' <div class="event-count-box"><div class="dash days_dash"><div class="digit">%D</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-day') +'</span> </div>'
+        //         + ' <div class="event-count-box"><div class="dash hours_dash"><div class="digit">%H</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-hour') +'</span> </div>'
+        //         + ' <div class="event-count-box"><div class="dash minutes_dash"><div class="digit">%M</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-minute') +'</span> </div>'
+        //         + ' <div class="event-count-box"><div class="dash seconds_dash"><div class="digit">%S</div></div> <span class="dash_title d-block text-center text-capitalize color-pink">'+ $('#clock').data('text-second') +'</span> </div>'));
+        //     }
+        // });
     }
     
     if ($("#wish-form").length) {
@@ -422,6 +425,22 @@
         thumbnail: true,
         dynamic: true,
         dynamicEl: photoGalleries2,
+        download: false,
+        autoplay: true,
+        preload: 2,
+        appendSubHtmlTo: '.lg-item',
+        index: parseInt(indexNumber)
+      });
+    });
+
+        // ALBUM GALLERIES
+    $(document).on('click', '.btn-see-more-gallery3', function(e){
+        e.preventDefault();
+        let indexNumber = $(this).data('index') || 0;
+        $(this).lightGallery({
+        thumbnail: true,
+        dynamic: true,
+        dynamicEl: photoGalleries3,
         download: false,
         autoplay: true,
         preload: 2,
